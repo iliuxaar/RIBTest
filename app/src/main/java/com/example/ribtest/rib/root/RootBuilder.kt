@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.ribtest.R
 import com.example.ribtest.extension.inflate
-import com.example.ribtest.rib.root.feed.FeedBuilder
 import com.example.ribtest.rib.root.article.ArticleBuilder
+import com.example.ribtest.rib.root.article.ArticleInteractor
+import com.example.ribtest.rib.root.feed.FeedBuilder
 import com.example.ribtest.rib.root.feed.FeedInteractor
+import com.example.ribtest.rib.root.red.RedBuilder
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -60,7 +62,7 @@ class RootBuilder(dependency: ParentComponent) : ViewBuilder<RootView, RootRoute
                 view: RootView,
                 interactor: RootInteractor
             ): RootRouter {
-                return RootRouter(view, interactor, component, FeedBuilder(component), ArticleBuilder(component))
+                return RootRouter(view, interactor, component, FeedBuilder(component), ArticleBuilder(component), RedBuilder(component))
             }
 
             @RootScope
@@ -68,15 +70,23 @@ class RootBuilder(dependency: ParentComponent) : ViewBuilder<RootView, RootRoute
             @JvmStatic
             internal fun feedInteractorListener(interactor: RootInteractor): FeedInteractor.Listener =
                     interactor.FeedInteractorListener()
+
+            @RootScope
+            @Provides
+            @JvmStatic
+            internal fun articleInteractorListener(interactor: RootInteractor): ArticleInteractor.ArticleListener =
+                interactor.ArticleInteractorListener()
         }
 
     }
 
     @RootScope
     @dagger.Component(modules = [(Module::class)], dependencies = [(ParentComponent::class)])
-    interface Component : InteractorBaseComponent<RootInteractor>,
+    interface Component :
+        InteractorBaseComponent<RootInteractor>,
             FeedBuilder.ParentComponent,
             ArticleBuilder.ParentComponent,
+            RedBuilder.ParentComponent,
         BuilderComponent {
 
         @dagger.Component.Builder

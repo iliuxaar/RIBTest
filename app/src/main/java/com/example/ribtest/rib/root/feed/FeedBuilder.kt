@@ -38,7 +38,7 @@ class FeedBuilder(dependency: ParentComponent) : ViewBuilder<FeedView, FeedRoute
             parentViewGroup.inflate<FeedView>(R.layout.rib_feed, parentViewGroup)
 
     interface ParentComponent {
-        val listener: FeedInteractor.Listener
+        val Feedlistener: FeedInteractor.Listener
         fun parentView(): RootView
     }
 

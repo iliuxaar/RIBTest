@@ -1,8 +1,8 @@
 package com.example.ribtest.rib.root.red
 
-import android.view.View
-
-import com.uber.rib.core.ViewRouter
+import android.view.ViewGroup
+import com.example.ribtest.navigation.BaseRouter
+import com.example.ribtest.navigation.States
 
 /**
  * Adds and removes children of {@link RedBuilder.RedScope}.
@@ -12,4 +12,5 @@ import com.uber.rib.core.ViewRouter
 class RedRouter(
     view: RedView,
     interactor: RedInteractor,
-    component: RedBuilder.Component) : ViewRouter<RedView, RedInteractor, RedBuilder.Component>(view, interactor, component)
+    component: RedBuilder.Component,
+    parentView: ViewGroup) : BaseRouter<RedView, RedInteractor, RedBuilder.Component, States>(view, interactor, component, parentView)

@@ -2,13 +2,14 @@ package com.example.ribtest.rib.root.red
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.example.ribtest.R
+import com.example.ribtest.extension.inflate
+import com.example.ribtest.rib.root.RootView
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Provides
-import java.lang.annotation.Retention
-import java.lang.annotation.RetentionPolicy.CLASS
 import javax.inject.Qualifier
 import javax.inject.Scope
 
@@ -37,13 +38,11 @@ class RedBuilder(dependency: ParentComponent) : ViewBuilder<RedView, RedRouter, 
   }
 
   override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): RedView? {
-    // TODO: Inflate a new view using the provided inflater, or create a new view programatically using the
-    // provided context from the parentViewGroup.
-    return null
+      return parentViewGroup.inflate<RedView>(R.layout.rib_red)
   }
 
   interface ParentComponent {
-    // TODO: Define dependencies required from your parent interactor here.
+    fun parentView(): RootView
   }
 
   @dagger.Module
@@ -62,8 +61,9 @@ class RedBuilder(dependency: ParentComponent) : ViewBuilder<RedView, RedRouter, 
       internal fun router(
           component: Component,
           view: RedView,
-          interactor: RedInteractor): RedRouter {
-        return RedRouter(view, interactor, component)
+          interactor: RedInteractor,
+          parentView: RootView): RedRouter {
+        return RedRouter(view, interactor, component, parentView)
       }
     }
 
@@ -92,10 +92,10 @@ class RedBuilder(dependency: ParentComponent) : ViewBuilder<RedView, RedRouter, 
   }
 
   @Scope
-  @Retention(CLASS)
+  @Retention(AnnotationRetention.BINARY)
   internal annotation class RedScope
 
   @Qualifier
-  @Retention(CLASS)
+  @Retention(AnnotationRetention.BINARY)
   internal annotation class RedInternal
 }

@@ -3,9 +3,9 @@ package com.example.ribtest.rib.root.article
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.ribtest.R
+import com.example.ribtest.extension.inflate
 import com.example.ribtest.rib.root.RootView
 import com.example.ribtest.rib.root.feed.enitity.ListItem
-import com.example.ribtest.extension.inflate
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -41,6 +41,7 @@ class ArticleBuilder(dependency: ParentComponent) : ViewBuilder<ArticleView, Art
             parentViewGroup.inflate<ArticleView>(R.layout.rib_article)
 
     interface ParentComponent{
+        val Articlelistener: ArticleInteractor.ArticleListener
         fun parentView(): RootView
     }
 

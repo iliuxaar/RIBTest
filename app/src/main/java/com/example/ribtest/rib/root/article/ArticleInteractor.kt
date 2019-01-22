@@ -4,6 +4,7 @@ import com.example.ribtest.rib.root.feed.enitity.ListItem
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**
@@ -12,8 +13,8 @@ import javax.inject.Inject
 @RibInteractor
 class ArticleInteractor : Interactor<ArticleInteractor.ArticlePresenter, ArticleRouter>() {
 
-    @Inject
-    lateinit var presenter: ArticlePresenter
+    @Inject lateinit var presenter: ArticlePresenter
+    @Inject lateinit var listener: ArticleListener
 
     @Inject
     lateinit var listItem: ListItem
@@ -21,7 +22,7 @@ class ArticleInteractor : Interactor<ArticleInteractor.ArticlePresenter, Article
     override fun didBecomeActive(savedInstanceState: Bundle?) {
         super.didBecomeActive(savedInstanceState)
         presenter.setListItem(listItem)
-
+        presenter.buttonClick().subscribe{listener.onButtonClick()}
     }
 
 
@@ -29,10 +30,11 @@ class ArticleInteractor : Interactor<ArticleInteractor.ArticlePresenter, Article
      * Presenter interface implemented by this RIB's view.
      */
     interface ArticlePresenter {
+        fun buttonClick(): Observable<Any>
         fun setListItem(listItem: ListItem)
     }
 
-    interface Listener{
+    interface ArticleListener{
         fun onButtonClick()
     }
 }

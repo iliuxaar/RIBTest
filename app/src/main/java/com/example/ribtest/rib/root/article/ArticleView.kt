@@ -4,6 +4,8 @@ import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import com.example.ribtest.rib.root.feed.enitity.ListItem
+import com.jakewharton.rxbinding2.view.RxView
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.rib_article.view.*
 
 
@@ -15,6 +17,12 @@ class ArticleView @JvmOverloads constructor(
         attrs: AttributeSet? = null,
         defStyle: Int = 0
 ) : ConstraintLayout(context, attrs, defStyle), ArticleInteractor.ArticlePresenter {
+
+
+    override fun buttonClick(): Observable<Any>{
+        return RxView.clicks(addRedViewButton)
+    }
+
 
     override fun setListItem(listItem: ListItem) {
         tvTittle.text = listItem.text
