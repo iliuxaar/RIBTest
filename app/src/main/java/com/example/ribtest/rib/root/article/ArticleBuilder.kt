@@ -6,6 +6,7 @@ import com.example.ribtest.R
 import com.example.ribtest.extension.inflate
 import com.example.ribtest.rib.root.RootView
 import com.example.ribtest.rib.root.feed.enitity.ListItem
+import com.example.ribtest.rib.root.red.RedBuilder
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -41,7 +42,6 @@ class ArticleBuilder(dependency: ParentComponent) : ViewBuilder<ArticleView, Art
             parentViewGroup.inflate<ArticleView>(R.layout.rib_article)
 
     interface ParentComponent{
-        val Articlelistener: ArticleInteractor.ArticleListener
         fun parentView(): RootView
     }
 
@@ -64,16 +64,15 @@ class ArticleBuilder(dependency: ParentComponent) : ViewBuilder<ArticleView, Art
                 interactor: ArticleInteractor,
                 parentView: RootView
             ): ArticleRouter {
-                return ArticleRouter(view, interactor, component, parentView)
+                return ArticleRouter(view, interactor, component, RedBuilder(component), parentView)
             }
 
         }
-
     }
 
     @ArticleScope
     @dagger.Component(modules = [(Module::class)], dependencies = [(ParentComponent::class)])
-    interface Component : InteractorBaseComponent<ArticleInteractor>, BuilderComponent {
+    interface Component : InteractorBaseComponent<ArticleInteractor>, BuilderComponent, RedBuilder.ParentComponent {
 
         @dagger.Component.Builder
         interface Builder {

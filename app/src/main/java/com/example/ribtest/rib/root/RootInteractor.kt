@@ -1,6 +1,5 @@
 package com.example.ribtest.rib.root
 
-import com.example.ribtest.rib.root.article.ArticleInteractor
 import com.example.ribtest.rib.root.feed.FeedInteractor
 import com.example.ribtest.rib.root.feed.enitity.ListItem
 import com.uber.rib.core.Interactor
@@ -35,12 +34,5 @@ class RootInteractor : Interactor<RootInteractor.RootPresenter, RootRouter>() {
             //router.detachFeed()
             router.attachArticle(listItem)
         }
-    }
-
-    inner class ArticleInteractorListener: ArticleInteractor.ArticleListener{
-        override fun onButtonClick() {
-            if(router.redRouter == null) router.attachRed() else router.detachRed()
-        }
-
     }
 }

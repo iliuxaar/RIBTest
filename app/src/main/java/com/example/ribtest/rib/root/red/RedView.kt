@@ -1,8 +1,8 @@
 package com.example.ribtest.rib.root.red
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
+import android.widget.FrameLayout
 
 /**
  * Top level view for {@link RedBuilder.RedScope}.
@@ -10,4 +10,4 @@ import android.util.AttributeSet
 class RedView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyle: Int = 0) : ConstraintLayout(context, attrs, defStyle), RedInteractor.RedPresenter
+    defStyle: Int = 0) : FrameLayout(context, attrs, defStyle), RedInteractor.RedPresenter

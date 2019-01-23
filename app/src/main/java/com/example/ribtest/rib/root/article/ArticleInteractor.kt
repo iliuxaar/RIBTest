@@ -13,8 +13,8 @@ import javax.inject.Inject
 @RibInteractor
 class ArticleInteractor : Interactor<ArticleInteractor.ArticlePresenter, ArticleRouter>() {
 
-    @Inject lateinit var presenter: ArticlePresenter
-    @Inject lateinit var listener: ArticleListener
+    @Inject
+    lateinit var presenter: ArticlePresenter
 
     @Inject
     lateinit var listItem: ListItem
@@ -22,7 +22,7 @@ class ArticleInteractor : Interactor<ArticleInteractor.ArticlePresenter, Article
     override fun didBecomeActive(savedInstanceState: Bundle?) {
         super.didBecomeActive(savedInstanceState)
         presenter.setListItem(listItem)
-        presenter.buttonClick().subscribe{listener.onButtonClick()}
+        presenter.buttonClick().subscribe { openRedWindow() }
     }
 
 
@@ -32,9 +32,16 @@ class ArticleInteractor : Interactor<ArticleInteractor.ArticlePresenter, Article
     interface ArticlePresenter {
         fun buttonClick(): Observable<Any>
         fun setListItem(listItem: ListItem)
+        fun setButtonText(text: String)
     }
 
-    interface ArticleListener{
-        fun onButtonClick()
+    private fun openRedWindow(){
+        if (router.redRouter == null) {
+            router.attachRed()
+            presenter.setButtonText("Remove Red RIB")
+        } else {
+            router.detachRed()
+            presenter.setButtonText("Add Red RIB")
+        }
     }
 }

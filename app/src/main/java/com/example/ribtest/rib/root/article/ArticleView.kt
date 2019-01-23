@@ -28,4 +28,8 @@ class ArticleView @JvmOverloads constructor(
         tvTittle.text = listItem.text
     }
 
+    override fun setButtonText(text: String) {
+        addRedViewButton.text = text
+    }
+
 }

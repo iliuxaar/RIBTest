@@ -13,8 +13,7 @@ class RootActivity : RibActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        var test = 0;
-        test = (interactor.router as RootRouter).onBackClick()
+        val test: Int = (interactor.router as RootRouter).onBackClick()
         if(test == 0) finish()
     }
 

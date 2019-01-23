@@ -4,5 +4,6 @@ import com.uber.rib.core.RouterNavigatorState;
 
 public enum States implements RouterNavigatorState {
     FEED,
-    ARTICLE
+    ARTICLE,
+    ARTICLE_WITH_RED
 }

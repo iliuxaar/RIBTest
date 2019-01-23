@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.ribtest.R
 import com.example.ribtest.extension.inflate
-import com.example.ribtest.rib.root.RootView
+import com.example.ribtest.rib.root.article.ArticleView
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -42,7 +42,7 @@ class RedBuilder(dependency: ParentComponent) : ViewBuilder<RedView, RedRouter, 
   }
 
   interface ParentComponent {
-    fun parentView(): RootView
+    fun parentView(): ArticleView
   }
 
   @dagger.Module
@@ -62,7 +62,7 @@ class RedBuilder(dependency: ParentComponent) : ViewBuilder<RedView, RedRouter, 
           component: Component,
           view: RedView,
           interactor: RedInteractor,
-          parentView: RootView): RedRouter {
+          parentView: ArticleView): RedRouter {
         return RedRouter(view, interactor, component, parentView)
       }
     }
