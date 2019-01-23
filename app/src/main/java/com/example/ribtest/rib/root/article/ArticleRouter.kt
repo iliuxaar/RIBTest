@@ -40,6 +40,6 @@ class ArticleRouter(
         isPush: Boolean
     ) {
         super.willAttachToHost(router, previousState, newState, isPush)
-        if(newState == States.ARTICLE_WITH_RED) attachRed()
+        if(newState == States.ARTICLE_WITH_RED) (interactor as ArticleInteractor).openRedWindow()
     }
 }

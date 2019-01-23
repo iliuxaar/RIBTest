@@ -35,7 +35,7 @@ class ArticleInteractor : Interactor<ArticleInteractor.ArticlePresenter, Article
         fun setButtonText(text: String)
     }
 
-    private fun openRedWindow(){
+    public fun openRedWindow(){
         if (router.redRouter == null) {
             router.attachRed()
             presenter.setButtonText("Remove Red RIB")
