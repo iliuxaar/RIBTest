@@ -5,6 +5,7 @@ import com.example.ribtest.rib.root.article.ArticleBuilder
 import com.example.ribtest.rib.root.feed.FeedBuilder
 import com.example.ribtest.rib.root.feed.enitity.ListItem
 import com.example.ribtest.rib.root.slidingpane.SlidingPaneBuilder
+import com.example.ribtest.rib.root.slidingpane.SlidingPaneRouter
 import com.uber.rib.core.ModernRouterNavigator
 import com.uber.rib.core.ViewRouter
 import kotlin.random.Random
@@ -50,6 +51,11 @@ class RootRouter(
     }
 
     fun onBackClick(): Int{
+        if(routerNavigator.peekState() == States.SLIDING_PANE) {
+            val isEmpty = (routerNavigator.peekRouter() as SlidingPaneRouter).onBackClick()
+            if(isEmpty) routerNavigator.popState()
+            return 1
+        }
         routerNavigator.popState()
         return if(routerNavigator.size() == 0) 0 else 1
     }

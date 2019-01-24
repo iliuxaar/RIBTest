@@ -36,4 +36,17 @@ class SlidingPaneRouter(
 
     fun attachSecondRight() = secondRightBuilder.build(view).let { router -> rightNavigator.pushRetainedState(States.SECOND_RIGHT, router, router) }
 
+    private fun popView(navigator: ModernRouterNavigator<States>): Boolean{
+        return if (navigator.size() == 1) true
+        else {
+            navigator.popState()
+            false
+        }
+    }
+
+    fun onBackClick(): Boolean{
+        return if (view.isRightPaneOpened()) popView(rightNavigator)
+        else popView(leftNavigator)
+    }
+
 }
