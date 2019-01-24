@@ -19,10 +19,14 @@ class ArticleInteractor : Interactor<ArticleInteractor.ArticlePresenter, Article
     @Inject
     lateinit var listItem: ListItem
 
+    @Inject
+    lateinit var slidePaneListener: SlidePaneListener
+
     override fun didBecomeActive(savedInstanceState: Bundle?) {
         super.didBecomeActive(savedInstanceState)
         presenter.setListItem(listItem)
         presenter.buttonClick().subscribe { openRedWindow() }
+        presenter.openPaneClick().subscribe { slidePaneListener.openPaneLayout() }
     }
 
 
@@ -31,8 +35,13 @@ class ArticleInteractor : Interactor<ArticleInteractor.ArticlePresenter, Article
      */
     interface ArticlePresenter {
         fun buttonClick(): Observable<Any>
+        fun openPaneClick(): Observable<Any>
         fun setListItem(listItem: ListItem)
         fun setButtonText(text: String)
+    }
+
+    interface SlidePaneListener{
+        fun openPaneLayout()
     }
 
     public fun openRedWindow(){

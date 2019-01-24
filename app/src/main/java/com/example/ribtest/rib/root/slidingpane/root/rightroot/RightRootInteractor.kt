@@ -1,4 +1,4 @@
-package com.example.ribtest.rib.root.red
+package com.example.ribtest.rib.root.slidingpane.root.rightroot
 
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
@@ -6,15 +6,15 @@ import com.uber.rib.core.RibInteractor
 import javax.inject.Inject
 
 /**
- * Coordinates Business Logic for [RedScope].
+ * Coordinates Business Logic for [RightRootScope].
  *
  * TODO describe the logic of this scope.
  */
 @RibInteractor
-class RedInteractor : Interactor<RedInteractor.RedPresenter, RedRouter>() {
+class RightRootInteractor : Interactor<RightRootInteractor.RightRootPresenter, RightRootRouter>() {
 
   @Inject
-  lateinit var presenter: RedPresenter
+  lateinit var presenter: RightRootPresenter
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
@@ -31,5 +31,5 @@ class RedInteractor : Interactor<RedInteractor.RedPresenter, RedRouter>() {
   /**
    * Presenter interface implemented by this RIB's view.
    */
-  interface RedPresenter
+  interface RightRootPresenter
 }

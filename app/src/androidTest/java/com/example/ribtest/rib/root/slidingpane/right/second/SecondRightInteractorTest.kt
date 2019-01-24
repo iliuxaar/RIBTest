@@ -1,7 +1,5 @@
-package com.example.ribtest.rib.root.red
+package com.example.ribtest.rib.root.slidingpane.right.second
 
-import com.example.ribtest.rib.root.article.red.RedInteractor
-import com.example.ribtest.rib.root.article.red.RedRouter
 import com.uber.rib.core.RibTestBasePlaceholder
 import com.uber.rib.core.InteractorHelper
 
@@ -10,18 +8,18 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class RedInteractorTest : RibTestBasePlaceholder() {
+class SecondRightInteractorTest : RibTestBasePlaceholder() {
 
-  @Mock internal lateinit var presenter: RedInteractor.RedPresenter
-  @Mock internal lateinit var router: RedRouter
+  @Mock internal lateinit var presenter: SecondRightInteractor.SecondRightPresenter
+  @Mock internal lateinit var router: SecondRightRouter
 
-  private var interactor: RedInteractor? = null
+  private var interactor: SecondRightInteractor? = null
 
   @Before
   fun setup() {
     MockitoAnnotations.initMocks(this)
 
-    interactor = TestRedInteractor.create(presenter)
+    interactor = TestSecondRightInteractor.create(presenter)
   }
 
   /**
@@ -30,7 +28,7 @@ class RedInteractorTest : RibTestBasePlaceholder() {
   @Test
   fun anExampleTest_withSomeConditions_shouldPass() {
     // Use InteractorHelper to drive your interactor's lifecycle.
-    InteractorHelper.attach<RedInteractor.RedPresenter, RedRouter>(interactor!!, presenter, router, null)
+    InteractorHelper.attach<SecondRightInteractor.SecondRightPresenter, SecondRightRouter>(interactor!!, presenter, router, null)
     InteractorHelper.detach(interactor!!)
 
     throw RuntimeException("Remove this test and add real tests.")

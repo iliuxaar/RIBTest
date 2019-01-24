@@ -18,7 +18,6 @@ class ArticleView @JvmOverloads constructor(
         defStyle: Int = 0
 ) : ConstraintLayout(context, attrs, defStyle), ArticleInteractor.ArticlePresenter {
 
-
     override fun buttonClick(): Observable<Any>{
         return RxView.clicks(addRedViewButton)
     }
@@ -30,6 +29,10 @@ class ArticleView @JvmOverloads constructor(
 
     override fun setButtonText(text: String) {
         addRedViewButton.text = text
+    }
+
+    override fun openPaneClick(): Observable<Any> {
+        return RxView.clicks(addSlidePaneButton)
     }
 
 }

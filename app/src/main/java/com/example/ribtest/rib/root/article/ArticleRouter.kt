@@ -3,8 +3,8 @@ package com.example.ribtest.rib.root.article
 import android.view.ViewGroup
 import com.example.ribtest.navigation.BaseRouter
 import com.example.ribtest.navigation.States
-import com.example.ribtest.rib.root.red.RedBuilder
-import com.example.ribtest.rib.root.red.RedRouter
+import com.example.ribtest.rib.root.article.red.RedBuilder
+import com.example.ribtest.rib.root.article.red.RedRouter
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.InteractorBaseComponent
 
@@ -12,11 +12,11 @@ import com.uber.rib.core.InteractorBaseComponent
  * Adds and removes children of {@link ArticleBuilder.ArticleScope}.
  */
 class ArticleRouter(
-    view: ArticleView,
-    interactor: ArticleInteractor,
-    component: ArticleBuilder.Component,
-    val redBuilder: RedBuilder,
-    parentView: ViewGroup) : BaseRouter<ArticleView, ArticleInteractor, ArticleBuilder.Component, States>(view, interactor, component, parentView){
+        view: ArticleView,
+        interactor: ArticleInteractor,
+        component: ArticleBuilder.Component,
+        val redBuilder: RedBuilder,
+        parentView: ViewGroup) : BaseRouter<ArticleView, ArticleInteractor, ArticleBuilder.Component, States>(view, interactor, component, parentView){
 
     var redRouter: RedRouter? = null
 

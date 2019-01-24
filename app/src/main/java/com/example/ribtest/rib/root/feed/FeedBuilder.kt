@@ -35,10 +35,10 @@ class FeedBuilder(dependency: ParentComponent) : ViewBuilder<FeedView, FeedRoute
     }
 
     override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup) =
-            parentViewGroup.inflate<FeedView>(R.layout.rib_feed, parentViewGroup)
+            parentViewGroup.inflate<FeedView>(R.layout.rib_feed)
 
     interface ParentComponent {
-        val Feedlistener: FeedInteractor.Listener
+        val feedlistener: FeedInteractor.Listener
         fun parentView(): RootView
     }
 

@@ -4,6 +4,7 @@ import com.example.ribtest.navigation.States
 import com.example.ribtest.rib.root.article.ArticleBuilder
 import com.example.ribtest.rib.root.feed.FeedBuilder
 import com.example.ribtest.rib.root.feed.enitity.ListItem
+import com.example.ribtest.rib.root.slidingpane.SlidingPaneBuilder
 import com.uber.rib.core.ModernRouterNavigator
 import com.uber.rib.core.ViewRouter
 import kotlin.random.Random
@@ -16,7 +17,8 @@ class RootRouter(
     interactor: RootInteractor,
     component: RootBuilder.Component,
     private val feedBuilder: FeedBuilder,
-    private val articleBuilder: ArticleBuilder
+    private val articleBuilder: ArticleBuilder,
+    private val slidingPaneBuilder: SlidingPaneBuilder
 ) : ViewRouter<RootView, RootInteractor, RootBuilder.Component>(view, interactor, component) {
 
     private val routerNavigator: ModernRouterNavigator<States> = ModernRouterNavigator(this)
@@ -33,6 +35,10 @@ class RootRouter(
         } else {
             articleBuilder.build(view, listItem).let { router -> routerNavigator.pushRetainedState(States.ARTICLE_WITH_RED, router, router) }
         }
+    }
+
+    fun attachSlidingPane(){
+        slidingPaneBuilder.build(view).let { router -> routerNavigator.pushRetainedState(States.SLIDING_PANE, router, router) }
     }
 
     fun detachFeed() = {

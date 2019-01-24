@@ -1,4 +1,4 @@
-package com.example.ribtest.rib.root.red
+package com.example.ribtest.rib.root.article.red
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout

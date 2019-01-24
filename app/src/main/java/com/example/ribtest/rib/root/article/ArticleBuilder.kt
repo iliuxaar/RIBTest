@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import com.example.ribtest.R
 import com.example.ribtest.extension.inflate
 import com.example.ribtest.rib.root.RootView
+import com.example.ribtest.rib.root.article.red.RedBuilder
 import com.example.ribtest.rib.root.feed.enitity.ListItem
-import com.example.ribtest.rib.root.red.RedBuilder
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -42,6 +42,7 @@ class ArticleBuilder(dependency: ParentComponent) : ViewBuilder<ArticleView, Art
             parentViewGroup.inflate<ArticleView>(R.layout.rib_article)
 
     interface ParentComponent{
+        val slidePaneArticleListener: ArticleInteractor.SlidePaneListener
         fun parentView(): RootView
     }
 

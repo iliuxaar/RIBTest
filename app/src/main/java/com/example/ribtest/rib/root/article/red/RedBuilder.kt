@@ -1,4 +1,4 @@
-package com.example.ribtest.rib.root.red
+package com.example.ribtest.rib.root.article.red
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -59,10 +59,10 @@ class RedBuilder(dependency: ParentComponent) : ViewBuilder<RedView, RedRouter, 
       @Provides
       @JvmStatic
       internal fun router(
-          component: Component,
-          view: RedView,
-          interactor: RedInteractor,
-          parentView: ArticleView): RedRouter {
+              component: Component,
+              view: RedView,
+              interactor: RedInteractor,
+              parentView: ArticleView): RedRouter {
         return RedRouter(view, interactor, component, parentView)
       }
     }

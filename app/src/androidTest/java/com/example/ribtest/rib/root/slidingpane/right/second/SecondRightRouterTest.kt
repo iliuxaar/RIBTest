@@ -1,9 +1,5 @@
-package com.example.ribtest.rib.root.red
+package com.example.ribtest.rib.root.slidingpane.right.second
 
-import com.example.ribtest.rib.root.article.red.RedBuilder
-import com.example.ribtest.rib.root.article.red.RedInteractor
-import com.example.ribtest.rib.root.article.red.RedRouter
-import com.example.ribtest.rib.root.article.red.RedView
 import com.uber.rib.core.RibTestBasePlaceholder
 import com.uber.rib.core.RouterHelper
 
@@ -12,19 +8,19 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class RedRouterTest : RibTestBasePlaceholder() {
+class SecondRightRouterTest : RibTestBasePlaceholder() {
 
-  @Mock internal lateinit var component: RedBuilder.Component
-  @Mock internal lateinit var interactor: RedInteractor
-  @Mock internal lateinit var view: RedView
+  @Mock internal lateinit var component: SecondRightBuilder.Component
+  @Mock internal lateinit var interactor: SecondRightInteractor
+  @Mock internal lateinit var view: SecondRightView
 
-  private var router: RedRouter? = null
+  private var router: SecondRightRouter? = null
 
   @Before
   fun setup() {
     MockitoAnnotations.initMocks(this)
 
-    router = RedRouter(view, interactor, component)
+    router = SecondRightRouter(view, interactor, component)
   }
 
   /**
