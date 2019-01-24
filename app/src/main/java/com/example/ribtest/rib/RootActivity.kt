@@ -1,5 +1,6 @@
 package com.example.ribtest.rib
 
+import android.os.Bundle
 import android.view.ViewGroup
 import com.example.ribtest.rib.root.RootBuilder
 import com.example.ribtest.rib.root.RootRouter
@@ -17,4 +18,7 @@ class RootActivity : RibActivity() {
         if(test == 0) finish()
     }
 
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.ribtest.rib.root
 
 import com.example.ribtest.navigation.States
+import com.example.ribtest.navigation.StatesStack
 import com.example.ribtest.rib.root.article.ArticleBuilder
 import com.example.ribtest.rib.root.feed.FeedBuilder
 import com.example.ribtest.rib.root.feed.enitity.ListItem
@@ -26,20 +27,32 @@ class RootRouter(
 
     private val random: Random = Random(0)
 
+    public val states: StatesStack = StatesStack()
+
     fun attachFeed() = feedBuilder.build(view).let { router ->
         routerNavigator.pushRetainedState(States.FEED, router, router)
+        states.addState(States.FEED)
     }
 
     fun attachArticle(listItem: ListItem) {
         if(random.nextInt(1, 10) % 2 == 0){
-            articleBuilder.build(view, listItem).let { router -> routerNavigator.pushRetainedState(States.ARTICLE, router, router) }
+            articleBuilder.build(view, listItem).let { router ->
+                routerNavigator.pushRetainedState(States.ARTICLE, router, router)
+                states.addState(States.ARTICLE)
+            }
         } else {
-            articleBuilder.build(view, listItem).let { router -> routerNavigator.pushRetainedState(States.ARTICLE_WITH_RED, router, router) }
+            articleBuilder.build(view, listItem).let { router ->
+                routerNavigator.pushRetainedState(States.ARTICLE_WITH_RED, router, router)
+                states.addState(States.ARTICLE_WITH_RED)
+            }
         }
     }
 
     fun attachSlidingPane(){
-        slidingPaneBuilder.build(view).let { router -> routerNavigator.pushRetainedState(States.SLIDING_PANE, router, router) }
+        slidingPaneBuilder.build(view).let { router ->
+            routerNavigator.pushRetainedState(States.SLIDING_PANE, router, router)
+            states.addState(States.SLIDING_PANE)
+        }
     }
 
     fun detachFeed() = {
@@ -56,6 +69,7 @@ class RootRouter(
             if(isEmpty) routerNavigator.popState()
             return 1
         }
+        states.removeState(routerNavigator.peekState()!!)
         routerNavigator.popState()
         return if(routerNavigator.size() == 0) 0 else 1
     }
