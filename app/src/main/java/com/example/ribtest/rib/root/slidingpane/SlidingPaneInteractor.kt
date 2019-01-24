@@ -1,11 +1,5 @@
 package com.example.ribtest.rib.root.slidingpane
 
-import com.example.ribtest.rib.root.article.ArticleInteractor
-import com.example.ribtest.rib.root.feed.FeedInteractor
-import com.example.ribtest.rib.root.feed.enitity.ListItem
-import com.example.ribtest.rib.root.slidingpane.left.first.FirstLeftInteractor
-import com.example.ribtest.rib.root.slidingpane.left.first.FirstLeftInteractor_MembersInjector
-import com.example.ribtest.rib.root.slidingpane.right.first.FirstRightInteractor
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
@@ -19,35 +13,14 @@ import javax.inject.Inject
 @RibInteractor
 class SlidingPaneInteractor : Interactor<SlidingPaneInteractor.SlidingPanePresenter, SlidingPaneRouter>() {
 
-  @Inject
-  lateinit var presenter: SlidingPanePresenter
+    @Inject
+    lateinit var presenter: SlidingPanePresenter
 
-  override fun didBecomeActive(savedInstanceState: Bundle?) {
-    super.didBecomeActive(savedInstanceState)
-    router.attachFirstRight()
-    router.attachFirstLeft()
-  }
-
-  override fun willResignActive() {
-    super.willResignActive()
-  }
-
-  /**
-   * Presenter interface implemented by this RIB's view.
-   */
-  interface SlidingPanePresenter
-
-  inner class FirstLeftListener: FirstLeftInteractor.GreenListener {
-    override fun nextScreen() {
-      //router.detachFeed()
-      router.attachSecondLeft()
+    override fun didBecomeActive(savedInstanceState: Bundle?) {
+        super.didBecomeActive(savedInstanceState)
+        router.attachLeftRoot()
+        router.attachRightRoot()
     }
-  }
 
-  inner class FirstRightListener: FirstRightInteractor.OrangeListener {
-    override fun nextScreen() {
-      router.attachSecondRight()
-    }
-  }
-
+    interface SlidingPanePresenter
 }

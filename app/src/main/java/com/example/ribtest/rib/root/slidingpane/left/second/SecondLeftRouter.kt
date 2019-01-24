@@ -10,7 +10,7 @@ import com.example.ribtest.navigation.States
  * TODO describe the possible child configurations of this scope.
  */
 class SecondLeftRouter(
-    view: SecondLeftView,
-    interactor: SecondLeftInteractor,
-    component: SecondLeftBuilder.Component,
-    parentView: ViewGroup) : BaseRouter<SecondLeftView, SecondLeftInteractor, SecondLeftBuilder.Component, States>(view, interactor, component, parentView)
+        view: SecondLeftView,
+        interactor: SecondLeftInteractor,
+        component: SecondLeftBuilder.Component,
+        parentView: ViewGroup) : BaseRouter<SecondLeftView, SecondLeftInteractor, SecondLeftBuilder.Component, States>(view, interactor, component, parentView)

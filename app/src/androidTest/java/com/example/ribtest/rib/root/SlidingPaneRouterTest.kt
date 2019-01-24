@@ -14,30 +14,33 @@ import org.mockito.MockitoAnnotations
 
 class SlidingPaneRouterTest : RibTestBasePlaceholder() {
 
-  @Mock internal lateinit var component: SlidingPaneBuilder.Component
-  @Mock internal lateinit var interactor: SlidingPaneInteractor
-  @Mock internal lateinit var view: SlidingPaneView
+    @Mock
+    internal lateinit var component: SlidingPaneBuilder.Component
+    @Mock
+    internal lateinit var interactor: SlidingPaneInteractor
+    @Mock
+    internal lateinit var view: SlidingPaneView
 
-  private var router: SlidingPaneRouter? = null
+    private var router: SlidingPaneRouter? = null
 
-  @Before
-  fun setup() {
-    MockitoAnnotations.initMocks(this)
+    @Before
+    fun setup() {
+        MockitoAnnotations.initMocks(this)
 
-    router = SlidingPaneRouter(view, interactor, component)
-  }
+        router = SlidingPaneRouter(view, interactor, component)
+    }
 
-  /**
-   * TODO: Delete this example and add real tests.
-   */
-  @Test
-  fun anExampleTest_withSomeConditions_shouldPass() {
-    // Use RouterHelper to drive your router's lifecycle.
-    RouterHelper.attach(router!!)
-    RouterHelper.detach(router!!)
+    /**
+     * TODO: Delete this example and add real tests.
+     */
+    @Test
+    fun anExampleTest_withSomeConditions_shouldPass() {
+        // Use RouterHelper to drive your router's lifecycle.
+        RouterHelper.attach(router!!)
+        RouterHelper.detach(router!!)
 
-    throw RuntimeException("Remove this test and add real tests.")
-  }
+        throw RuntimeException("Remove this test and add real tests.")
+    }
 
 }
 

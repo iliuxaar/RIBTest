@@ -1,7 +1,10 @@
 package com.example.ribtest.rib.root.slidingpane.root.rightroot
 
+import com.example.ribtest.navigation.States
+import com.example.ribtest.rib.root.slidingpane.right.first.FirstRightInteractor
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
+import com.uber.rib.core.ModernRouterNavigator
 import com.uber.rib.core.RibInteractor
 import javax.inject.Inject
 
@@ -13,23 +16,31 @@ import javax.inject.Inject
 @RibInteractor
 class RightRootInteractor : Interactor<RightRootInteractor.RightRootPresenter, RightRootRouter>() {
 
-  @Inject
-  lateinit var presenter: RightRootPresenter
+    @Inject
+    lateinit var presenter: RightRootPresenter
 
-  override fun didBecomeActive(savedInstanceState: Bundle?) {
-    super.didBecomeActive(savedInstanceState)
+    @Inject
+    lateinit var navigator: ModernRouterNavigator<States>
 
-    // TODO: Add attachment logic here (RxSubscriptions, etc.).
-  }
+    override fun didBecomeActive(savedInstanceState: Bundle?) {
+        super.didBecomeActive(savedInstanceState)
+        router.attachFirstRight(navigator)
+    }
 
-  override fun willResignActive() {
-    super.willResignActive()
+    override fun willResignActive() {
+        super.willResignActive()
 
-    // TODO: Perform any required clean up here, or delete this method entirely if not needed.
-  }
+        // TODO: Perform any required clean up here, or delete this method entirely if not needed.
+    }
 
-  /**
-   * Presenter interface implemented by this RIB's view.
-   */
-  interface RightRootPresenter
+    /**
+     * Presenter interface implemented by this RIB's view.
+     */
+    interface RightRootPresenter
+
+    inner class FirstRightListener : FirstRightInteractor.OrangeListener {
+        override fun nextScreen() {
+            router.attachSecondRight(navigator)
+        }
+    }
 }

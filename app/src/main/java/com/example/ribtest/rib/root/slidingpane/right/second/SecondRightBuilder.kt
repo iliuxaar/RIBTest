@@ -4,13 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.ribtest.R
 import com.example.ribtest.extension.inflate
-import com.example.ribtest.rib.root.slidingpane.SlidingPaneView
+import com.example.ribtest.rib.root.slidingpane.root.rightroot.RightRootView
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Provides
-import kotlinx.android.synthetic.main.rib_sliding_pane.view.*
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy.CLASS
 import javax.inject.Qualifier
@@ -44,7 +43,7 @@ class SecondRightBuilder(dependency: ParentComponent) : ViewBuilder<SecondRightV
           parentViewGroup.inflate<SecondRightView>(R.layout.rib_second_right)
 
   interface ParentComponent {
-    fun slidePaneView(): SlidingPaneView
+    fun slidePaneView(): RightRootView
   }
 
   @dagger.Module
@@ -64,8 +63,8 @@ class SecondRightBuilder(dependency: ParentComponent) : ViewBuilder<SecondRightV
           component: Component,
           view: SecondRightView,
           interactor: SecondRightInteractor,
-          parentView: SlidingPaneView): SecondRightRouter {
-        return SecondRightRouter(view, interactor, component, parentView.right_container)
+          parentView: RightRootView): SecondRightRouter {
+        return SecondRightRouter(view, interactor, component, parentView)
       }
     }
 

@@ -10,30 +10,33 @@ import org.mockito.MockitoAnnotations
 
 class RightRootRouterTest : RibTestBasePlaceholder() {
 
-  @Mock internal lateinit var component: RightRootBuilder.Component
-  @Mock internal lateinit var interactor: RightRootInteractor
-  @Mock internal lateinit var view: RightRootView
+    @Mock
+    internal lateinit var component: RightRootBuilder.Component
+    @Mock
+    internal lateinit var interactor: RightRootInteractor
+    @Mock
+    internal lateinit var view: RightRootView
 
-  private var router: RightRootRouter? = null
+    private var router: RightRootRouter? = null
 
-  @Before
-  fun setup() {
-    MockitoAnnotations.initMocks(this)
+    @Before
+    fun setup() {
+        MockitoAnnotations.initMocks(this)
 
-    router = RightRootRouter(view, interactor, component)
-  }
+        router = RightRootRouter(view, interactor, component)
+    }
 
-  /**
-   * TODO: Delete this example and add real tests.
-   */
-  @Test
-  fun anExampleTest_withSomeConditions_shouldPass() {
-    // Use RouterHelper to drive your router's lifecycle.
-    RouterHelper.attach(router!!)
-    RouterHelper.detach(router!!)
+    /**
+     * TODO: Delete this example and add real tests.
+     */
+    @Test
+    fun anExampleTest_withSomeConditions_shouldPass() {
+        // Use RouterHelper to drive your router's lifecycle.
+        RouterHelper.attach(router!!)
+        RouterHelper.detach(router!!)
 
-    throw RuntimeException("Remove this test and add real tests.")
-  }
+        throw RuntimeException("Remove this test and add real tests.")
+    }
 
 }
 

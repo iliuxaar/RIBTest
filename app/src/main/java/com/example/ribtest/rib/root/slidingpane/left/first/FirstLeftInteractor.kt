@@ -14,32 +14,32 @@ import javax.inject.Inject
 @RibInteractor
 class FirstLeftInteractor : Interactor<FirstLeftInteractor.FirstLeftPresenter, FirstLeftRouter>() {
 
-  @Inject
-  lateinit var presenter: FirstLeftPresenter
+    @Inject
+    lateinit var presenter: FirstLeftPresenter
 
-  @Inject
-  lateinit var greenListener: GreenListener
+    @Inject
+    lateinit var greenListener: GreenListener
 
-  override fun didBecomeActive(savedInstanceState: Bundle?) {
-    super.didBecomeActive(savedInstanceState)
+    override fun didBecomeActive(savedInstanceState: Bundle?) {
+        super.didBecomeActive(savedInstanceState)
 
-      presenter.buttonClick().subscribe { greenListener.nextScreen() }
-  }
+        presenter.buttonClick().subscribe { greenListener.nextScreen() }
+    }
 
-  override fun willResignActive() {
-    super.willResignActive()
+    override fun willResignActive() {
+        super.willResignActive()
 
-    // TODO: Perform any required clean up here, or delete this method entirely if not needed.
-  }
+        // TODO: Perform any required clean up here, or delete this method entirely if not needed.
+    }
 
-  /**
-   * Presenter interface implemented by this RIB's view.
-   */
-  interface FirstLeftPresenter{
-    fun buttonClick(): Observable<Any>
-  }
+    /**
+     * Presenter interface implemented by this RIB's view.
+     */
+    interface FirstLeftPresenter {
+        fun buttonClick(): Observable<Any>
+    }
 
-  interface GreenListener{
-    fun nextScreen();
-  }
+    interface GreenListener {
+        fun nextScreen();
+    }
 }

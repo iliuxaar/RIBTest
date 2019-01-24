@@ -13,23 +13,23 @@ import javax.inject.Inject
 @RibInteractor
 class SecondLeftInteractor : Interactor<SecondLeftInteractor.SecondLeftPresenter, SecondLeftRouter>() {
 
-  @Inject
-  lateinit var presenter: SecondLeftPresenter
+    @Inject
+    lateinit var presenter: SecondLeftPresenter
 
-  override fun didBecomeActive(savedInstanceState: Bundle?) {
-    super.didBecomeActive(savedInstanceState)
+    override fun didBecomeActive(savedInstanceState: Bundle?) {
+        super.didBecomeActive(savedInstanceState)
 
-    // TODO: Add attachment logic here (RxSubscriptions, etc.).
-  }
+        // TODO: Add attachment logic here (RxSubscriptions, etc.).
+    }
 
-  override fun willResignActive() {
-    super.willResignActive()
+    override fun willResignActive() {
+        super.willResignActive()
 
-    // TODO: Perform any required clean up here, or delete this method entirely if not needed.
-  }
+        // TODO: Perform any required clean up here, or delete this method entirely if not needed.
+    }
 
-  /**
-   * Presenter interface implemented by this RIB's view.
-   */
-  interface SecondLeftPresenter
+    /**
+     * Presenter interface implemented by this RIB's view.
+     */
+    interface SecondLeftPresenter
 }
