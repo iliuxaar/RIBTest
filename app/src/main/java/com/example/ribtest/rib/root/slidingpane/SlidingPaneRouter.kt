@@ -42,6 +42,8 @@ class SlidingPaneRouter(
         rightRootRouter = router
     }
 
+
+    //навигацию назад можно засунуть в каждый из рутовых router, но я не вижу в этом смысла, если только navigator"ы выносить туда же
     private fun popView(navigator: ModernRouterNavigator<States>): Boolean {
         return if (navigator.size() == 1) true
         else {
