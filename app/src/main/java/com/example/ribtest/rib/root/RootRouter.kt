@@ -40,11 +40,13 @@ class RootRouter(
                 routerNavigator.pushRetainedState(States.ARTICLE, router, router)
                 states.addState(States.ARTICLE)
             }
-        } else {
-            articleBuilder.build(view, listItem).let { router ->
-                routerNavigator.pushRetainedState(States.ARTICLE_WITH_RED, router, router)
-                states.addState(States.ARTICLE_WITH_RED)
-            }
+        } else attachArticleWithRed(listItem)
+    }
+
+    fun attachArticleWithRed(listItem: ListItem) {
+        articleBuilder.build(view, listItem).let { router ->
+            routerNavigator.pushRetainedState(States.ARTICLE_WITH_RED, router, router)
+            states.addState(States.ARTICLE_WITH_RED)
         }
     }
 
@@ -66,6 +68,7 @@ class RootRouter(
     fun onBackClick(): Int{
         if(routerNavigator.peekState() == States.SLIDING_PANE) {
             val isEmpty = (routerNavigator.peekRouter() as SlidingPaneRouter).onBackClick()
+            states.removeState(States.SLIDING_PANE)
             if(isEmpty) routerNavigator.popState()
             return 1
         }

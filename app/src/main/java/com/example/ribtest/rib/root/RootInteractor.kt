@@ -23,9 +23,10 @@ class RootInteractor : Interactor<RootInteractor.RootPresenter, RootRouter>() {
         super.didBecomeActive(savedInstanceState)
         if(savedInstanceState != null){
             val states = savedInstanceState.getParcelable("states") as StatesStack
-            states.stack.forEach {state -> 
+            states.stack.forEach {state ->
                 if(state == States.FEED) router.attachFeed()
-                if(state == States.ARTICLE || state == States.ARTICLE_WITH_RED) router.attachArticle(ListItem("Saved State"))
+                if(state == States.ARTICLE) router.attachArticle(ListItem("Saved State"))
+                if(state == States.ARTICLE_WITH_RED) router.attachArticleWithRed(ListItem("Saved State"))
                 if(state == States.SLIDING_PANE) router.attachSlidingPane()
             }
         } else router.attachFeed()

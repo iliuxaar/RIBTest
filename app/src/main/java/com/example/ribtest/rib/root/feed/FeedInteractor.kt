@@ -27,15 +27,15 @@ class FeedInteractor : Interactor<FeedInteractor.FeedPresenter, FeedRouter>() {
     @Inject
     lateinit var listener: Listener
 
-    var counterDisposable: Disposable? = null
-    var clickDisposable: Disposable? = null
-    var visibilityDisposable: Disposable? = null
+    private var counterDisposable: Disposable? = null
+    private var clickDisposable: Disposable? = null
+    private var visibilityDisposable: Disposable? = null
 
     override fun didBecomeActive(savedInstanceState: Bundle?) {
         super.didBecomeActive(savedInstanceState)
         Log.d("test", "didBecomeActive")
         counter = savedInstanceState?.getString("counter")?.toLong() ?: counter
-
+        presenter.showCounter(counter)
         visibilityDisposable = presenter.visibility
                 .filter { visibility -> visibility == VISIBLE }
                 .doOnSubscribe {
